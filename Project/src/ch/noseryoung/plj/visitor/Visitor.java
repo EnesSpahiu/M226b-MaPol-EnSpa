@@ -2,6 +2,7 @@ package ch.noseryoung.plj.visitor;
 
 import ch.noseryoung.plj.IO;
 import ch.noseryoung.plj.User;
+import ch.noseryoung.plj.Zoo;
 
 public class Visitor extends User {
 
@@ -9,6 +10,7 @@ public class Visitor extends User {
 
     IO io = new IO();
     DB_Visitor db = new DB_Visitor();
+    Zoo zoo = new Zoo();
 
     public Visitor(String firstName, String lastName, String password, int age) {
         super(firstName, lastName, password);
@@ -19,9 +21,15 @@ public class Visitor extends User {
     }
 
     public void checkIfHasAccountOrSignUp(){
-        switch (io.hasAccount()){
-            case 1 -> login();
-            case 2 -> signUp();
+        int answer = 0;
+        while(answer <= 4 && answer >= 0){
+            answer = io.userOptions();
+            switch (answer){
+                case 1 -> signUp();
+                case 2 -> login();
+                case 3 -> deleteAcc();
+                case 4 -> zoo.visitZoo();
+            }
         }
     }
 
@@ -33,6 +41,8 @@ public class Visitor extends User {
         db.insertData();
     }
 
+    public void deleteAcc(){db.deleteData();}
+
     public int getAge() {
         return age;
     }
@@ -41,4 +51,11 @@ public class Visitor extends User {
         this.age = age;
     }
 
+    public DB_Visitor getDb() {
+        return db;
+    }
+
+    public void setDb(DB_Visitor db) {
+        this.db = db;
+    }
 }

@@ -12,7 +12,7 @@ public class ZooManager {
     public void initProject() {
         int answer = 0;
 
-        while (answer <= 3 && answer >= 0) {
+        while (answer <= 2 && answer >= 0) {
             answer = io.startProgram();
 
             switch (answer) {

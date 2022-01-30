@@ -13,27 +13,9 @@ public class IO {
 
         while (errorOccured){
             try {
-                drawBox(40, "1. Sign Up/Login Guest");
-                drawBox(40, "2. Login Supervisor");
-                answer = sc.nextInt();
-                sc.nextLine();
-                errorOccured = false;
-            }catch (InputMismatchException e){
-                System.out.println("Wrong Input");
-                sc.nextLine();
-            }
-        }
-        return answer;
-    }
-
-    public int hasAccount() {
-        int answer = 0;
-        boolean errorOccured = true;
-
-        while (errorOccured){
-            try {
-                drawBox(40, "1. Login");
-                drawBox(40, "2. Sign Up");
+                drawBox(40, "1. Visitor");
+                drawBox(40, "2. Login Supervisor ");
+                drawBox(40, "3. Exit ");
                 answer = sc.nextInt();
                 sc.nextLine();
                 errorOccured = false;
@@ -51,11 +33,10 @@ public class IO {
 
         while (errorOccured){
             try {
-                drawBox(40, "1. Add Supervisor");
+                drawBox(40, "1. Add Supervisor ");
                 drawBox(40, "2. Edit Supervisor");
                 drawBox(40, "3. Delete Supervisor");
-                drawBox(40, "4. Edit Cherishes");
-                drawBox(40, "5. Edit Animals");
+                drawBox(40, "4. Exit ");
                 answer = sc.nextInt();
                 sc.nextLine();
                 errorOccured = false;
@@ -84,8 +65,9 @@ public class IO {
             try {
                 drawBox(40, "1. Sign Up");
                 drawBox(40, "2. Login");
-                drawBox(40, "3. Delete Account");
-                drawBox(40, "4. Exit");
+                drawBox(40, "3. Delete Account ");
+                drawBox(40, "4. Visit zoo");
+                drawBox(40, "5. Exit ");
                 answer = sc.nextInt();
                 sc.nextLine();
                 errorOccurred = false;
@@ -98,20 +80,24 @@ public class IO {
         return answer;
     }
 
-    public int cherishVisorInput() {
+    public int zooOptions() {
         int answer = 0;
-        boolean errorOccured = true;
+        boolean errorOccurred = true;
 
-        while (errorOccured){
+        while (errorOccurred){
             try {
-                drawBox(40, "1. Add Cherish");
-                drawBox(40, "2. Edit Cherish");
-                drawBox(40, "3. Delete Cherish");
+                drawBox(40, "1. Visit Tiger");
+                drawBox(40, "2. Visit Shark");
+                drawBox(40, "3. Visit Frog ");
+                drawBox(40, "4. Visit Bird ");
+                drawBox(40, "5. Visit Crocodile");
+                drawBox(40, "6. Exit ");
                 answer = sc.nextInt();
                 sc.nextLine();
-                errorOccured = false;
+                errorOccurred = false;
             }catch (InputMismatchException e){
                 System.out.println("Wrong Input");
+                errorOccurred = true;
                 sc.nextLine();
             }
         }

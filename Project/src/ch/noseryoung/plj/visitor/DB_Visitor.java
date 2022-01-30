@@ -23,7 +23,7 @@ public class DB_Visitor implements DB {
     @Override
     public void testConnection() {
         try {
-            connection = DriverManager.getConnection(URL, userName, password);
+            setConnection(DriverManager.getConnection(URL, userName, password));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,6 +106,35 @@ public class DB_Visitor implements DB {
 
     }
 
+    public void insertDataMock(String firstName, String lastName, String pwd, int age) {
+
+        int generatedKey = 0;
+
+        try {
+            connection = DriverManager.getConnection(URL, userName, password);
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO visitor " + "VALUES ("+ generatedKey +", '" + firstName + "' , '" + lastName + "', '" + pwd + "', '" + age + "')",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            ps.execute();
+
+            System.out.println("Successfully Signed in");
+            System.out.println("Welcome to our Zoo");
+
+            visitor = new Visitor(firstName, lastName, pwd, age);
+
+            visitor.setFirstName(firstName);
+            visitor.setLastName(lastName);
+            visitor.setPassword(pwd);
+            visitor.setAge(age);
+
+        } catch (SQLException e){
+            System.out.println("Something went wrong");
+        }
+
+        updateTable();
+
+    }
+
     @Override
     public void deleteData() {
         try {
@@ -137,15 +166,36 @@ public class DB_Visitor implements DB {
 
     }
 
+    public void deleteDataMock(String firstName, String lastName, String pwd) {
+        try {
+
+            Class.forName(driver);
+            Connection conn = DriverManager.getConnection(URL, userName, password);
+
+            String query = "DELETE FROM visitor WHERE firstname='" + firstName + "' AND lastname='" + lastName + "' AND password='" + pwd + "'";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+
+            preparedStmt.execute();
+
+            System.out.println("User deleted");
+
+        }
+        catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+
+    }
+
     @Override
     public boolean loginUser() {
         boolean isLoggedIn = false;
         String firstName = " ";
         String lastName = " ";
         String pwd = " ";
-        ArrayList<Visitor> users;
+        ArrayList<Visitor> visitors;
 
-        users = getData();
+        visitors = getData();
 
         try{
             connection = DriverManager.getConnection(URL, userName, password);
@@ -171,17 +221,53 @@ public class DB_Visitor implements DB {
                     break;
                 }
 
-                for (int i = 0; i < users.size(); i++) {
-                    if (users.get(i).getFirstName().equals(firstName) && users.get(i).getLastName().equals(lastName) && users.get(i).getPassword().equals(pwd)) {
+                for (int i = 0; i < visitors.size(); i++) {
+                    if (visitors.get(i).getFirstName().equals(firstName) && visitors.get(i).getLastName().equals(lastName) && visitors.get(i).getPassword().equals(pwd)) {
                         isLoggedIn = true;
-                        visitor = new Visitor(users.get(i).getFirstName(), users.get(i).getLastName(), users.get(i).getPassword(), users.get(i).getAge());
+                        visitor = new Visitor(visitors.get(i).getFirstName(), visitors.get(i).getLastName(), visitors.get(i).getPassword(), visitors.get(i).getAge());
 
-                        visitor.setFirstName(users.get(i).getFirstName());
-                        visitor.setLastName(users.get(i).getLastName());
-                        visitor.setAge(users.get(i).getAge());
-                        visitor.setPassword(users.get(i).getPassword());
+                        visitor.setFirstName(visitors.get(i).getFirstName());
+                        visitor.setLastName(visitors.get(i).getLastName());
+                        visitor.setAge(visitors.get(i).getAge());
+                        visitor.setPassword(visitors.get(i).getPassword());
 
-                        System.out.println(users.get(i).getAge());
+                        break;
+                    } else {
+                        isLoggedIn = false;
+                    }
+                }
+                if (isLoggedIn){
+                    System.out.println("Successfully logged in");
+                }else {
+                    System.out.println("There is no such user, try again");
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Something went wrong");
+        }
+        return isLoggedIn;
+    }
+
+    public boolean loginUserMock(String firstName, String lastName, String pwd) {
+        boolean isLoggedIn = false;
+        ArrayList<Visitor> visitors;
+
+        visitors = getData();
+
+        try{
+            connection = DriverManager.getConnection(URL, userName, password);
+            while (!isLoggedIn) {
+
+                for (int i = 0; i < visitors.size(); i++) {
+                    if (visitors.get(i).getFirstName().equals(firstName) && visitors.get(i).getLastName().equals(lastName) && visitors.get(i).getPassword().equals(pwd)) {
+                        isLoggedIn = true;
+                        visitor = new Visitor(visitors.get(i).getFirstName(), visitors.get(i).getLastName(), visitors.get(i).getPassword(), visitors.get(i).getAge());
+
+                        visitor.setFirstName(visitors.get(i).getFirstName());
+                        visitor.setLastName(visitors.get(i).getLastName());
+                        visitor.setAge(visitors.get(i).getAge());
+                        visitor.setPassword(visitors.get(i).getPassword());
+
                         break;
                     } else {
                         isLoggedIn = false;
@@ -217,4 +303,27 @@ public class DB_Visitor implements DB {
         }
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getURL() {
+        return URL;
+    }
+
+    public String getDriver() {
+        return driver;
+    }
 }

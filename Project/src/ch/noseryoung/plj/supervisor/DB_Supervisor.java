@@ -1,9 +1,12 @@
 package ch.noseryoung.plj.supervisor;
 
 import ch.noseryoung.plj.DB;
+import ch.noseryoung.plj.animal.animals.*;
+import ch.noseryoung.plj.cherish.Cherish;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class DB_Supervisor implements DB {
@@ -31,7 +34,7 @@ public class DB_Supervisor implements DB {
     @Override
     public ArrayList<Supervisor> getData() {
         String output = "";
-        ArrayList<Supervisor> visitors = new ArrayList<>();
+        ArrayList<Supervisor> supervisors = new ArrayList<>();
         Statement stmt = null;
         ResultSet rs = null;
         try {
@@ -40,15 +43,15 @@ public class DB_Supervisor implements DB {
             stmt = connection.createStatement();
             rs = stmt.executeQuery("SELECT * FROM supervisor");
             while (rs.next()) {
-                visitors.add(new Supervisor((String) rs.getObject(2), (String) rs.getObject(3),
-                        (String) rs.getObject(4)));
+                supervisors.add(new Supervisor((String) rs.getObject(2), (String) rs.getObject(3),
+                        (String) rs.getObject(4), (String) rs.getObject(5)));
             }
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        return visitors;
+        return supervisors;
     }
 
     @Override
@@ -78,11 +81,18 @@ public class DB_Supervisor implements DB {
 
             System.out.println("Successfully added supervisor");
 
-            supervisor = new Supervisor(firstName, lastName, pwd);
+            supervisor = new Supervisor(firstName, lastName, pwd, cherishname);
 
             supervisor.setFirstName(firstName);
             supervisor.setLastName(lastName);
             supervisor.setPassword(pwd);
+            switch (cherishname.toLowerCase()){
+                case "tigercherish" -> supervisor.setCherishOfSuperVisor(new Cherish("Tigercherish", new Tiger("SomeTiger", 3)));
+                case "sharkcherish" -> supervisor.setCherishOfSuperVisor(new Cherish("Sharkcherish", new Shark("SomeShark", 12)));
+                case "frogcherish" -> supervisor.setCherishOfSuperVisor(new Cherish("Frogcherish", new Frog("SomeFrog", 5)));
+                case "crocodilecherish" -> supervisor.setCherishOfSuperVisor(new Cherish("Crocodilecherish", new Crocodile("SomeCrocodile", 2)));
+                case "birdcherish" -> supervisor.setCherishOfSuperVisor(new Cherish("BirdCherish", new Bird("SomeBird", 8)));
+            }
 
         } catch (SQLException e){
             System.out.println("Something went wrong");
@@ -95,7 +105,6 @@ public class DB_Supervisor implements DB {
     @Override
     public void deleteData() {
         try {
-
             System.out.println("Type in first name of Account: (Look out for Capital letters)");
             String firstName = sc.nextLine();
 
