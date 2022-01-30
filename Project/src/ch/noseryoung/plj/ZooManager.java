@@ -1,12 +1,13 @@
 package ch.noseryoung.plj;
 
+import ch.noseryoung.plj.supervisor.Supervisor;
+import ch.noseryoung.plj.visitor.Visitor;
+
 public class ZooManager {
 
     IO io = new IO();
     Visitor visitor = new Visitor();
     Supervisor sv = new Supervisor();
-    Cherish cherish = new Cherish();
-    Animal animal = new Animal();
 
     public void initProject() {
         int answer = 0;
@@ -16,9 +17,7 @@ public class ZooManager {
 
             switch (answer) {
                 case 1 -> visitor.checkIfHasAccountOrSignUp();
-                case 2 -> sv.superVisorInput();
-                case 3 -> cherish.cherishInput();
-                case 4 -> animal.AnimalInput();
+                case 2 -> sv.loginSuperVisor();
             }
         }
     }

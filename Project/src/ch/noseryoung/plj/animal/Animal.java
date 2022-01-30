@@ -1,4 +1,8 @@
-package ch.noseryoung.plj;
+package ch.noseryoung.plj.animal;
+
+import ch.noseryoung.plj.IO;
+
+import java.util.List;
 
 public class Animal {
 
@@ -50,4 +54,5 @@ public class Animal {
     public void setAge(int age) {
         this.age = age;
     }
+
 }

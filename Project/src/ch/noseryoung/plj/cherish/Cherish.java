@@ -1,7 +1,11 @@
-package ch.noseryoung.plj;
+package ch.noseryoung.plj.cherish;
+
+import ch.noseryoung.plj.animal.Animal;
+import ch.noseryoung.plj.IO;
 
 public class Cherish {
 
+    private String name;
     private Animal animal;
 
     IO io = new IO();
@@ -9,16 +13,17 @@ public class Cherish {
     public Cherish() {
     }
 
-    public Cherish(Animal animal) {
+    public Cherish(String name, Animal animal) {
+        this.name = name;
         this.animal = animal;
     }
 
-    public void cherishInput() {
-        switch (io.cherishVisorInput()) {
-            case 1 -> addCherish();
-            case 2 -> editCherish();
-            case 3 -> deleteCherish();
-        }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addCherish() {

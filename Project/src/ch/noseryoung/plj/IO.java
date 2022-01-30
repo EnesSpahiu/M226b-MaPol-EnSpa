@@ -14,10 +14,7 @@ public class IO {
         while (errorOccured){
             try {
                 drawBox(40, "1. Sign Up/Login Guest");
-                drawBox(40, "2. Edit Supervisors");
-                drawBox(40, "3. Edit Cherishes");
-                drawBox(40, "4. Edit Animals");
-                drawBox(40, "5. Leave");
+                drawBox(40, "2. Login Supervisor");
                 answer = sc.nextInt();
                 sc.nextLine();
                 errorOccured = false;
@@ -57,11 +54,44 @@ public class IO {
                 drawBox(40, "1. Add Supervisor");
                 drawBox(40, "2. Edit Supervisor");
                 drawBox(40, "3. Delete Supervisor");
+                drawBox(40, "4. Edit Cherishes");
+                drawBox(40, "5. Edit Animals");
                 answer = sc.nextInt();
                 sc.nextLine();
                 errorOccured = false;
             }catch (InputMismatchException e){
                 System.out.println("Wrong Input");
+                sc.nextLine();
+            }
+        }
+        return answer;
+    }
+
+    /**
+     * Method: userOptions
+     *
+     * Function: Prints out options of user and gets his input while
+     * trying to catch an InputMismatchException so the user can not type in
+     * false inputs.
+     *
+     * @return answer -> Contains the answer which option the user chooses
+     */
+    public int userOptions() {
+        int answer = 0;
+        boolean errorOccurred = true;
+
+        while (errorOccurred){
+            try {
+                drawBox(40, "1. Sign Up");
+                drawBox(40, "2. Login");
+                drawBox(40, "3. Delete Account");
+                drawBox(40, "4. Exit");
+                answer = sc.nextInt();
+                sc.nextLine();
+                errorOccurred = false;
+            }catch (InputMismatchException e){
+                System.out.println("Wrong Input");
+                errorOccurred = true;
                 sc.nextLine();
             }
         }
