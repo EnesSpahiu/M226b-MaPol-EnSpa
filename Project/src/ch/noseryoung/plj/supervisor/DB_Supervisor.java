@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ *
+ * The Class DB_Supervisor has several functions for database interactions.
+ * It implements the interface DB.
+ */
 public class DB_Supervisor implements DB {
 
     private Connection connection = null;
@@ -22,6 +27,10 @@ public class DB_Supervisor implements DB {
     public DB_Supervisor() {
     }
 
+    /**
+     * This functions tests the connection between the program and the database.
+     * It's solved within a try catch, if the connection catches an error it prints out an error message.
+     */
     @Override
     public void testConnection() {
         try {
@@ -31,6 +40,12 @@ public class DB_Supervisor implements DB {
         }
     }
 
+    /**
+     * This function gets the data from the database.
+     * It's solved within a try catch, if the something doesn't work,
+     * the program catches the error and prints out an error message.
+     * @return The function getData returns an ArrayList with the data from the database.
+     */
     @Override
     public ArrayList<Supervisor> getData() {
         String output = "";
@@ -54,6 +69,11 @@ public class DB_Supervisor implements DB {
         return supervisors;
     }
 
+    /**
+     * The function insertData inserts the input from the user into the database.
+     * The user provides his first name, last name, password and cherish name. If the import of the data worked,
+     * "Successfully added supervisor" is displayed. If an error occurs, "Something went wrong" is displayed.
+     */
     @Override
     public void insertData() {
 
@@ -102,6 +122,10 @@ public class DB_Supervisor implements DB {
 
     }
 
+    /**
+     * This function lets the user delete certain records from the database. To do this,
+     * the user must enter the first name of the account, the last name of the account and the password of the account.
+     */
     @Override
     public void deleteData() {
         try {
@@ -132,6 +156,10 @@ public class DB_Supervisor implements DB {
 
     }
 
+    /**
+     * The function loginUser receives the firstname, lastname, and password from the user.
+     * @return It returns a boolean if the logged in user is true or false.
+     */
     @Override
     public boolean loginUser() {
         boolean isLoggedIn = false;
@@ -192,6 +220,11 @@ public class DB_Supervisor implements DB {
         return isLoggedIn;
     }
 
+    /**
+     * The function updateTable, updates tables in the database.
+     * It is solved within a try catch. If it is catches an error, the
+     * function will print out "got an exception!"
+     */
     @Override
     public void updateTable(){
         try {

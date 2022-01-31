@@ -3,6 +3,9 @@ package ch.noseryoung.plj.cherish;
 import ch.noseryoung.plj.animal.Animal;
 import ch.noseryoung.plj.IO;
 
+/**
+ * This class handles the cherish. It uses the  attributes name and animal.
+ */
 public class Cherish {
 
     private String name;

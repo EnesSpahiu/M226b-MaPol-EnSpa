@@ -6,6 +6,9 @@ import ch.noseryoung.plj.animal.Animal;
 import ch.noseryoung.plj.animal.animals.*;
 import ch.noseryoung.plj.cherish.Cherish;
 
+/**
+ * This class Supervisor extends the User.
+ */
 public class Supervisor extends User {
 
     Animal animal;

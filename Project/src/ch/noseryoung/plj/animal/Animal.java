@@ -4,6 +4,9 @@ import ch.noseryoung.plj.IO;
 
 import java.util.List;
 
+/**
+ * The Class Animal handles all Animals. Every animal at least got name and age.
+ */
 public class Animal {
 
     private String name;

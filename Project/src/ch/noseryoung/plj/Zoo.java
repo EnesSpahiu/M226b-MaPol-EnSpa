@@ -1,10 +1,18 @@
 package ch.noseryoung.plj;
 
+/*
+ * This class handles the sounds and cages of the zoo. If the user enters the tiger cage,
+ * the case 1 will be runned.
+ */
 public class Zoo {
 
     Sound sound;
     IO io = new IO();
 
+    /**
+     * The function visizZoo handles an input from the user.
+     * It's solved within a switch case. If the user decides to get in the tiger cage, a tiger sound will be run.
+     */
     public void visitZoo() {
         int answer = 0;
         while (answer <= 5 && answer >= 0){

@@ -4,6 +4,9 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This Class handles the Sound for the Zoo.
+ */
 public class Sound {
     public Sound(String filename) {
         try {

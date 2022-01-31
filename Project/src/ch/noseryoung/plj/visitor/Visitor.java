@@ -4,6 +4,11 @@ import ch.noseryoung.plj.IO;
 import ch.noseryoung.plj.User;
 import ch.noseryoung.plj.Zoo;
 
+/**
+ * The class Visitor extends the class user.
+ * It has a constructor with the attributes firstName, lastName, password and age.
+ * This class handles he visitor.
+ */
 public class Visitor extends User {
 
     private int age;
@@ -20,6 +25,10 @@ public class Visitor extends User {
     public Visitor() {
     }
 
+    /**
+     * This function checks if the user has to an account, or if he needs to sign up first.
+     * It's solved within a switch case
+     */
     public void checkIfHasAccountOrSignUp(){
         int answer = 0;
         while(answer <= 4 && answer >= 0){

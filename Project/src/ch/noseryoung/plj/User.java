@@ -1,5 +1,8 @@
 package ch.noseryoung.plj;
 
+/**
+ * This class handles the user. It got the attributes firstName, lastName and password.
+ */
 public class User {
 
     private String firstName;
