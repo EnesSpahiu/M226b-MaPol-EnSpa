@@ -231,15 +231,19 @@ public class DB_Supervisor implements DB {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(URL, userName, password);
 
-            String query = "UPDATE supervisor SET cherishname=" + supervisor.getCherishOfSuperVisor().getName() + " WHERE firstName='" + supervisor.getFirstName() + "' AND lastName='" + supervisor.getLastName() + "' AND password='" + supervisor.getPassword() + "'";
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            if (supervisor.getCherishOfSuperVisor().getName().isEmpty()){
 
-            preparedStmt.execute();
+            }else {
 
+                String query = "UPDATE supervisor SET cherishname=" + supervisor.getCherishOfSuperVisor().getName() + " WHERE firstName='" + supervisor.getFirstName() + "' AND lastName='" + supervisor.getLastName() + "' AND password='" + supervisor.getPassword() + "'";
+                PreparedStatement preparedStmt = conn.prepareStatement(query);
+
+                preparedStmt.execute();
+
+                System.out.println("Edited");
+            }
         }
         catch (Exception e) {
-            System.err.println("Got an exception! ");
-            System.err.println(e.getMessage());
         }
     }
 

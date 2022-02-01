@@ -39,8 +39,8 @@ public class Supervisor extends User {
     }
 
     public void superVisorInput() {
-        int answer = 0;
-        while(answer >= 0 && answer <= 3){
+        int answer = 1;
+        while(answer >= 1 && answer <= 3){
             answer = io.superVisorInput();
             switch (io.superVisorInput()){
                 case 1 -> addSuperVisor();
@@ -51,8 +51,9 @@ public class Supervisor extends User {
     }
 
     public void loginSuperVisor() {
-        db.loginUser();
-        superVisorInput();
+        if(db.loginUser()){
+            superVisorInput();
+        }
     }
 
     public void addSuperVisor() {

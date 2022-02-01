@@ -29,18 +29,6 @@ public class Cherish {
         this.name = name;
     }
 
-    public void addCherish() {
-        System.out.println("Added Cherish");
-    }
-
-    public void editCherish() {
-        System.out.println("Edited Cherish");
-    }
-
-    public void deleteCherish() {
-        System.out.println("Deleted Cherish");
-    }
-
     public Animal getAnimal() {
         return animal;
     }
