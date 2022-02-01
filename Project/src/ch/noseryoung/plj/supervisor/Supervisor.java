@@ -11,9 +11,6 @@ import ch.noseryoung.plj.cherish.Cherish;
  */
 public class Supervisor extends User {
 
-    Animal animal;
-    Cherish cherish;
-
     private Cherish cherishOfSuperVisor;
 
     IO io = new IO();

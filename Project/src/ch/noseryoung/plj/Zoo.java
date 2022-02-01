@@ -6,7 +6,6 @@ package ch.noseryoung.plj;
  */
 public class Zoo {
 
-    Sound sound;
     IO io = new IO();
 
     /**
